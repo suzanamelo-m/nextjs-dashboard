@@ -112,7 +112,27 @@ export default function RootLayout({
 
 ### Images
 
-Instead of manually implementing these optimizations, you can use the next/image component to automatically optimize your images.
+**Next.js** can serve static assets, like images, under the top-level `/public` folder. Files inside `/public` can be referenced in your application.
+
+With regular HTML, you would add an image as follows:
+
+```html
+<img
+  src="/hero.png"
+  alt="Screenshots of the dashboard project showing desktop version"
+/>
+```
+
+However, this means you have to manually:
+
+- Ensure your image is responsive on different screen sizes.
+- Specify image sizes for different devices.
+- Prevent layout shift as the images load.
+- Lazy load images that are outside the user's viewport.
+
+Images without dimensions and web fonts are common causes of layout shift due to the browser having to download additional resources.
+
+Instead of manually implementing these optimizations, you can use the `next/image` component to automatically optimize your images.
 
 **The `<Image>` component**
 The `<Image>` Component is an extension of the HTML `<img>` tag, and comes with automatic image optimization, such as:
@@ -121,6 +141,38 @@ The `<Image>` Component is an extension of the HTML `<img>` tag, and comes with 
 - Resizing images to avoid shipping large images to devices with a smaller viewport.
 - Lazy loading images by default (images load as they enter the viewport).
 - Serving images in modern formats, like WebP and AVIF, when the browser supports it.
+
+/app/page.tsx
+
+```typescript
+import AcmeLogo from '@/app/ui/acme-logo';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { lusitana } from '@/app/ui/fonts';
+import Image from 'next/image';
+
+export default function Page() {
+  return (
+    // ...
+    <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
+      {/* Add Hero Images Here */}
+      <Image
+        src="/hero-desktop.png"
+        width={1000}
+        height={760}
+        className="hidden md:block"
+        alt="Screenshots of the dashboard project showing desktop version"
+      />
+    </div>
+    //...
+  );
+}
+
+```
+
+It's good practice to set the `width` and `height` of your images to avoid layout shift, these should be an aspect ratio identical to the source image. These values are _not_ the size the image is rendered, but instead the size of the actual image file used to understand the aspect ratio.
+
+Notice the class hidden to remove the image from the DOM on mobile screens, and md:block to show the image on desktop screens.
 
 ---
 
