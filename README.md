@@ -8,9 +8,7 @@ Followed by `pnpm dev` to start the development server.
 
 ---
 
-## What's in this Course
-
-### Styling
+## Styling
 
 When you use create-next-app to start a new project, Next.js will ask if you want to use Tailwind. If you select `yes`, **Next.js** will automatically install the necessary packages and configure **Tailwind** in your application.
 
@@ -173,6 +171,22 @@ export default function Page() {
 It's good practice to set the `width` and `height` of your images to avoid layout shift, these should be an aspect ratio identical to the source image. These values are _not_ the size the image is rendered, but instead the size of the actual image file used to understand the aspect ratio.
 
 Notice the class hidden to remove the image from the DOM on mobile screens, and md:block to show the image on desktop screens.
+
+---
+
+## Routing
+
+### Nested routing
+
+**Next.js** uses file-system routing where **folders** are used to create nested routes. Each folder represents a **route segment** that maps to a **URL segment.**
+
+In this application, you already have a page file: `/app/page.tsx` - this is the home page associated with the route `/`.
+
+You can create separate UIs for each route using `layout.tsx` and `page.tsx` files.
+
+`page.tsx` is a special **Next.js** file that exports a React component, and it's required for the route to be accessible.
+
+`app/dashboard/page.tsx`
 
 ---
 
