@@ -188,6 +188,20 @@ You can create separate UIs for each route using `layout.tsx` and `page.tsx` fil
 
 `app/dashboard/page.tsx`
 
+`app/dashboard/invoices/page.tsx`
+
+Dashboards have some sort of navigation that is shared across multiple pages. In Next.js, you can use a special `layout.tsx` file to create UI that is shared between multiple pages.
+
+`/app/dashboard/layout.tsx`
+
+One benefit of using layouts in **Next.js** is that on navigation, only the page components update while the layout won't re-render. This is called partial rendering which preserves client-side React state in the layout when transitioning between pages.
+
+## Root Layout
+
+A root `layout` is required in every **Next.js** application. Any UI you add to the root layout will be shared across all pages in your application. You can use the root layout to modify your `<html>` and `<body>` tags, and add metadata.
+
+Since the new layout you've just created (`/app/dashboard/layout.tsx`) is unique to the `dashboard` pages, you don't need to add any UI to the root layout above.
+
 ---
 
 This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
