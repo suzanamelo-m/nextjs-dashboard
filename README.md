@@ -202,6 +202,18 @@ A root `layout` is required in every **Next.js** application. Any UI you add to 
 
 Since the new layout you've just created (`/app/dashboard/layout.tsx`) is unique to the `dashboard` pages, you don't need to add any UI to the root layout above.
 
+## The `<Link>` component
+
+In Next.js, you can use the `<Link />` Component to link between pages in your application. `<Link>` allows you to do [client-side navigation](https://nextjs.org/docs/app/getting-started/linking-and-navigating#how-routing-and-navigation-works) with JavaScript.
+
+## Whenever `<Link>` components appear in the browser's viewport, Next.js automatically prefetches the code for the linked route in the background. By the time the user clicks the link, the code for the destination page will already be loaded in the background, and this is what makes the page transition near-instant!
+
+### Showing active links
+
+Next.js provides a React hook called `usePathname()` that you can use to to get the user's current path from the URL and implement a common UI pattern, that is to show an active link to indicate to the user what page they are currently on.
+
+> Since `usePathname()` is a React hook, you'll need to turn you page into a Client Component.
+
 ---
 
 This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
