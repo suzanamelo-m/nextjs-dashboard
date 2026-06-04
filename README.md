@@ -214,6 +214,24 @@ Next.js provides a React hook called `usePathname()` that you can use to to get 
 
 > Since `usePathname()` is a React hook, you'll need to turn you page into a Client Component.
 
+You can use the `clsx` library introduced in the chapter on CSS styling to conditionally apply class names when the link is active. When `link.href` matches the `pathname`, the link should be displayed with blue text and a light blue background.
+
+```tsx
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
+
+// ...
+            className={clsx(
+              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+              {
+                'bg-sky-100 text-blue-600': pathname === link.href,
+              },
+            )}
+```
+
 ---
 
 This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
