@@ -206,7 +206,7 @@ Since the new layout you've just created (`/app/dashboard/layout.tsx`) is unique
 
 In Next.js, you can use the `<Link />` Component to link between pages in your application. `<Link>` allows you to do [client-side navigation](https://nextjs.org/docs/app/getting-started/linking-and-navigating#how-routing-and-navigation-works) with JavaScript.
 
-## Whenever `<Link>` components appear in the browser's viewport, Next.js automatically prefetches the code for the linked route in the background. By the time the user clicks the link, the code for the destination page will already be loaded in the background, and this is what makes the page transition near-instant!
+> Whenever `<Link>` components appear in the browser's viewport, Next.js automatically prefetches the code for the linked route in the background. By the time the user clicks the link, the code for the destination page will already be loaded in the background, and this is what makes the page transition near-instant!
 
 ### Showing active links
 
