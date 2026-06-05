@@ -14,7 +14,7 @@ When you use create-next-app to start a new project, Next.js will ask if you wan
 
 **Tailwind** and **CSS** modules are the two most common ways of styling Next.js applications.
 
-/app/ui/home.module.css
+_/app/ui/home.module.css_
 
 ```css
 .shape {
@@ -26,7 +26,7 @@ When you use create-next-app to start a new project, Next.js will ask if you wan
 }
 ```
 
-/app/page.tsx
+_/app/page.tsx_
 
 ```typescript
 
@@ -47,7 +47,7 @@ export default function Page() {
 
 `clsx` is a library that lets you toggle class names easily.
 
-/app/ui/invoices/status.tsx
+_/app/ui/invoices/status.tsx_
 
 ```typescript
 
@@ -76,7 +76,7 @@ export default function InvoiceStatus({ status }: { status: string }) {
 
 **Next.js** automatically optimizes fonts in the application when you use the next/font module. It downloads font files at build time and hosts them with your other static assets. This means when a user visits your application, there are no additional network requests for fonts which would impact performance.
 
-/app/iu / fonts.ts;
+_/app/ui/fonts.ts_
 
 ```typescript
 import { Inter, Lusitana } from "next/font/google";
@@ -89,7 +89,7 @@ export const lusitana = Lusitana({
 });
 ```
 
-/app/layout.tsx;
+_/app/layout.tsx_
 
 ```tsx
 import "@/app/ui/global.css";
@@ -140,7 +140,7 @@ The `<Image>` Component is an extension of the HTML `<img>` tag, and comes with 
 - Lazy loading images by default (images load as they enter the viewport).
 - Serving images in modern formats, like WebP and AVIF, when the browser supports it.
 
-/app/page.tsx
+_/app/page.tsx_
 
 ```typescript
 import AcmeLogo from '@/app/ui/acme-logo';
@@ -234,6 +234,4 @@ import clsx from 'clsx';
 
 ---
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
-
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+> This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
