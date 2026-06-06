@@ -307,7 +307,7 @@ Where you place your Suspense boundaries will depend on a few things:
 2. What content you want to prioritize.
 3. If the components rely on data fetching.
 
-> Where you place your suspense boundaries will vary depending on your application. In general, it's good practice to move your data fetches down to the components that need it, and then wrap those components in Suspense. But there is nothing wrong with streaming the sections or the whole page if that's what your application needs.
+> Where you place your suspense boundaries will vary depending on your application. In general, it's good practice to move your data fetches down to the components that need it, and then wrap those components in Suspense, creating more granular Suspense boundaries. This allows you to stream specific components and prevent the UI from blocking.. But there is nothing wrong with streaming the sections or the whole page if that's what your application needs.
 
 ---
 
