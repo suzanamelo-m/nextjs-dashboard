@@ -196,6 +196,12 @@ Dashboards have some sort of navigation that is shared across multiple pages. In
 
 One benefit of using layouts in **Next.js** is that on navigation, only the page components update while the layout won't re-render. This is called partial rendering which preserves client-side React state in the layout when transitioning between pages.
 
+### Route Groups
+
+Route groups allow you to organize files into logical groups without affecting the URL path structure. When you create a new folder using parentheses `()`, the name won't be included in the URL path. For example, `/dashboard/(overview)/page.tsx` becomes `/dashboard`.
+
+You can also use route groups to separate your application into sections (e.g. `(marketing)` routes and `(shop)` routes) or by teams for larger applications.
+
 ## Root Layout
 
 A root `layout` is required in every **Next.js** application. Any UI you add to the root layout will be shared across all pages in your application. You can use the root layout to modify your `<html>` and `<body>` tags, and add metadata.
