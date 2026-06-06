@@ -301,6 +301,12 @@ export default function Loading() {
 
 Suspense allows you to defer rendering parts of your application until some condition is met (e.g. data is loaded). You can wrap your dynamic components in Suspense. Then, pass it a fallback component to show while the dynamic component loads.
 
+Where you place your Suspense boundaries will depend on a few things:
+
+1. How you want the user to experience the page as it streams.
+2. What content you want to prioritize.
+3. If the components rely on data fetching.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
