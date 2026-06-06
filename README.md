@@ -311,4 +311,29 @@ Where you place your Suspense boundaries will depend on a few things:
 
 ---
 
+## URL search params
+
+Benefits of implementing search with URL params:
+
+- **Bookmarkable and shareable URLs:** Since the search parameters are in the URL, users can bookmark the current state of the application, including their search queries and filters, for future reference or sharing.
+- **Server-side rendering:** URL parameters can be directly consumed on the server to render the initial state, making it easier to handle server rendering.
+- **Analytics and tracking:** Having search queries and filters directly in the URL makes it easier to track user behavior without requiring additional client-side logic.
+
+### Adding the search functionality
+
+These are the Next.js client hooks that you can use to implement the search functionality:
+
+- `useSearchParams` - Allows you to access the parameters of the current URL. For example, the search params for this URL `/dashboard/invoices?page=1&query=pending` would look like this: `{page: '1', query: 'pending'}`.
+- `usePathname` - Lets you read the current URL's pathname. For example, for the `route /dashboard/invoices`, `usePathname` would return `'/dashboard/invoices'`.
+- `useRouter` - Enables navigation between routes within client components programmatically.
+
+Here's a quick overview of the implementation steps:
+
+- Capture the user's input.
+- Update the URL with the search params.
+- Keep the URL in sync with the input field.
+- Update the related component to reflect the search query.
+
+---
+
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
