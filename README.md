@@ -242,6 +242,28 @@ By default, Next.js applications use **React Server Components**. Fetching data 
 - Server Components run on the server, so you can keep expensive data fetches and logic on the server, only sending the result to the client.
 - Since Server Components run on the server, you can query the database directly without an additional API layer. This saves you from writing and maintaining additional code.
 
+### Static Rendering
+
+With static rendering, data fetching and rendering happens on the server at build time (when you deploy) or when revalidating data.
+
+Benefits:
+
+- Faster websites
+- Reduced Server Load
+- SEO
+
+> Static rendering is useful for UI with no data or data that is shared across users, such as a static blog post or a product page. It might not be a good fit for a dashboard that has personalized data which is regularly updated.
+
+### Dynamic Rendering
+
+With dynamic rendering, content is rendered on the server for each user at request time (when the user visits the page).
+
+Benefits:
+
+- Real-Time Data
+- User-Specific Content
+- Request Time Information
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
