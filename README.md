@@ -234,4 +234,14 @@ import clsx from 'clsx';
 
 ---
 
+## React Server Components
+
+By default, Next.js applications use **React Server Components**. Fetching data with Server Components is a relatively new approach and there are a few benefits of using them:
+
+- Server Components support JavaScript Promises, providing a solution for asynchronous tasks like data fetching natively. You can use `async/await` syntax without needing `useEffect`, `useState` or other data fetching libraries.
+- Server Components run on the server, so you can keep expensive data fetches and logic on the server, only sending the result to the client.
+- Since Server Components run on the server, you can query the database directly without an additional API layer. This saves you from writing and maintaining additional code.
+
+---
+
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
