@@ -275,6 +275,22 @@ There are two ways you implement streaming in Next.js:
 1. At the page level, with the `loading.tsx` file (which creates `<Suspense>` for you).
 2. At the component level, with `<Suspense>` for more granular control.
 
-## `loading.tsx` is a special Next.js file built on top of React Suspense. It allows you to create fallback UI to show as a replacement while page content loads.
+`loading.tsx` is a special Next.js file built on top of React Suspense. It allows you to create fallback UI to show as a replacement while page content loads.
+
+### Loading Skeletons
+
+A loading skeleton is a simplified version of the UI. Many websites use them as a placeholder (or fallback) to indicate to users that the content is loading.
+
+_/app/dashboard/loading.tsx_
+
+```tsx
+import DashboardSkeleton from "@/app/ui/skeletons";
+
+export default function Loading() {
+  return <DashboardSkeleton />;
+}
+```
+
+---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
