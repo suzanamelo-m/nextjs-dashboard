@@ -264,6 +264,17 @@ Benefits:
 - User-Specific Content
 - Request Time Information
 
+### Streaming
+
+It is a data transfer technique that allows you to break down a route into smaller "chunks" and progressively stream them from the server to the client as they become ready, preventing slow data requests from blocking your whole page
+
+![Server Side Rendering Streaming Chart](public/streaming-chart.png)
+
+There are two ways you implement streaming in Next.js:
+
+1. At the page level, with the `loading.tsx` file (which creates `<Suspense>` for you).
+2. At the component level, with `<Suspense>` for more granular control.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
