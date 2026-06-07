@@ -30,7 +30,6 @@ _/app/page.tsx_
 
 ```typescript
 
-
 import AcmeLogo from '@/app/ui/acme-logo';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -44,6 +43,8 @@ export default function Page() {
   )
 }
 ```
+
+### `clsx`
 
 `clsx` is a library that lets you toggle class names easily.
 
@@ -130,9 +131,10 @@ However, this means you have to manually:
 
 Images without dimensions and web fonts are common causes of layout shift due to the browser having to download additional resources.
 
-Instead of manually implementing these optimizations, you can use the `next/image` component to automatically optimize your images.
+> Instead of manually implementing these optimizations, you can use the `next/image` component to automatically optimize your images.
 
 **The `<Image>` component**
+
 The `<Image>` Component is an extension of the HTML `<img>` tag, and comes with automatic image optimization, such as:
 
 - Preventing layout shift automatically when images are loading.
@@ -170,7 +172,7 @@ export default function Page() {
 
 It's good practice to set the `width` and `height` of your images to avoid layout shift, these should be an aspect ratio identical to the source image. These values are _not_ the size the image is rendered, but instead the size of the actual image file used to understand the aspect ratio.
 
-Notice the class hidden to remove the image from the DOM on mobile screens, and md:block to show the image on desktop screens.
+Notice the class hidden to remove the image from the DOM on mobile screens, and `md:block` to show the image on desktop screens.
 
 ---
 
@@ -202,11 +204,15 @@ Route groups allow you to organize files into logical groups without affecting t
 
 You can also use route groups to separate your application into sections (e.g. `(marketing)` routes and `(shop)` routes) or by teams for larger applications.
 
+---
+
 ## Root Layout
 
 A root `layout` is required in every **Next.js** application. Any UI you add to the root layout will be shared across all pages in your application. You can use the root layout to modify your `<html>` and `<body>` tags, and add metadata.
 
 Since the new layout you've just created (`/app/dashboard/layout.tsx`) is unique to the `dashboard` pages, you don't need to add any UI to the root layout above.
+
+---
 
 ## The `<Link>` component
 
@@ -276,12 +282,12 @@ It is a data transfer technique that allows you to break down a route into small
 
 ![Server Side Rendering Streaming Chart](public/streaming-chart.png)
 
-There are two ways you implement streaming in Next.js:
+There are two ways you implement streaming in **Next.js**:
 
 1. At the page level, with the `loading.tsx` file (which creates `<Suspense>` for you).
 2. At the component level, with `<Suspense>` for more granular control.
 
-`loading.tsx` is a special Next.js file built on top of React Suspense. It allows you to create fallback UI to show as a replacement while page content loads.
+> `loading.tsx` is a special Next.js file built on top of React Suspense. It allows you to create fallback UI to show as a replacement while page content loads.
 
 ### Loading Skeletons
 
@@ -299,7 +305,7 @@ export default function Loading() {
 
 ### `<Suspense>`
 
-Suspense allows you to defer rendering parts of your application until some condition is met (e.g. data is loaded). You can wrap your dynamic components in Suspense. Then, pass it a fallback component to show while the dynamic component loads.
+Suspense allows you to defer rendering parts of your application until some condition is met (e.g. data is loaded). You can wrap your dynamic components in `Suspense`. Then, pass it a fallback component to show while the dynamic component loads.
 
 Where you place your Suspense boundaries will depend on a few things:
 
@@ -321,7 +327,7 @@ Benefits of implementing search with URL params:
 
 ### Adding the search functionality
 
-These are the Next.js client hooks that you can use to implement the search functionality:
+These are the **Next.js** client hooks that you can use to implement the search functionality:
 
 - `useSearchParams` - Allows you to access the parameters of the current URL. For example, the search params for this URL `/dashboard/invoices?page=1&query=pending` would look like this: `{page: '1', query: 'pending'}`.
 - `usePathname` - Lets you read the current URL's pathname. For example, for the `route /dashboard/invoices`, `usePathname` would return `'/dashboard/invoices'`.
@@ -378,6 +384,15 @@ export default function Search({ placeholder }: { placeholder: string }) {
 > `defaultValue` vs. `value` / **Controlled vs. Uncontrolled**
 
 > If you're using state to manage the `value` of an input, you'd use the value attribute to make it a controlled component. This means React would manage the input's state. However, since you're not using state, you can use `defaultValue`. This means the native input will manage its own state. This is okay since you're saving the search query to the URL instead of state.
+
+### When to use the `useSearchParams()` hook vs. the `searchParams` prop?
+
+You might have noticed you used two different ways to extract search params. Whether you use one or the other depends on whether you're working on the client or the server.
+
+- `<Search>` is a Client Component, so you used the `useSearchParams()` hook to access the params from the client.
+- `<Table>` is a Server Component that fetches its own data, so you can pass the `searchParams` prop from the page to the component.
+
+> As a general rule, if you want to read the params from the client, use the `useSearchParams()` hook as this avoids having to go back to the server.
 
 ---
 
