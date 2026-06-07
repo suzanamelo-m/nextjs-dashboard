@@ -394,6 +394,16 @@ You might have noticed you used two different ways to extract search params. Whe
 
 > As a general rule, if you want to read the params from the client, use the `useSearchParams()` hook as this avoids having to go back to the server.
 
+### Debouncing
+
+Debouncing is a programming practice that limits the rate at which a function can fire. In our case, you only want to query the database when the user has stopped typing.
+
+**How Debouncing Works:**
+
+1. **Trigger Event:** When an event that should be debounced (like a keystroke in the search box) occurs, a timer starts.
+2. **Wait:** If a new event occurs before the timer expires, the timer is reset.
+3. **Execution:** If the timer reaches the end of its countdown, the debounced function is executed.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
