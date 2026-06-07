@@ -40,4 +40,6 @@ export async function createInvoice(formData: FormData) {
 
   // revalidate the path, clear the cache and trigger a new request to the server
   revalidatePath("/dashboard/invoices");
+  // redirect the user back to the /dashboard/invoices page
+  redirect("/dashboard/invoices");
 }
