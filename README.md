@@ -460,6 +460,14 @@ Behind the scenes, Server Actions create a `POST` API endpoint. This is why you 
 
 > Tip: If you're working with forms that have many fields, you may want to consider using the [`entries()`](https://developer.mozilla.org/en-US/docs/Web/API/FormData/entries) method with JavaScript's [`Object.fromEntries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries).
 
+### Revalidate and redirect
+
+Next.js has a client-side router cache that stores the route segments in the user's browser for a time. Along with [prefetching](https://nextjs.org/docs/app/getting-started/linking-and-navigating#1-prefetching), this cache ensures that users can quickly navigate between routes while reducing the number of requests made to the server.
+
+You can use the `revalidatePath` function from Next.js to update the data displayed, clear this cache and trigger a new request to the server.
+
+You can use the `redirect` function from Next.js to redirect the user back to thepage you want.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
