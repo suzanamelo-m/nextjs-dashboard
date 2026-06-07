@@ -468,6 +468,10 @@ You can use the `revalidatePath` function from Next.js to update the data displa
 
 You can use the `redirect` function from Next.js to redirect the user back to thepage you want.
 
+## Dynamic Route Segment
+
+Next.js allows you to create [Dynamic Route Segments](https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes) when you don't know the exact segment name and want to create routes based on data. This could be blog post titles, product pages, etc. You can create dynamic route segments by wrapping a folder's name in square brackets. For example, `[id]`, `[post]` or `[slug]`.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
