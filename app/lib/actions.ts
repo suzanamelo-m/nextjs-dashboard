@@ -2,9 +2,12 @@
 
 import { z } from "zod";
 import postgres from "postgres";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
+// validate data using Zod
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string(),
@@ -23,11 +26,18 @@ export async function createInvoice(formData: FormData) {
     amount: formData.get("amount"),
     status: formData.get("status"),
   });
+  // convert the amount into cents
   const amountInCents = amount * 100;
+
+  // create a new date with the format "YYYY-MM-DD"
   const date = new Date().toISOString().split("T")[0];
 
+  // create an SQL query to insert the new invoice into the database
   await sql`
     INSERT INTO invoices (customer_id, amount, status, date)
     VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
   `;
+
+  // revalidate the path, clear the cache and trigger a new request to the server
+  revalidatePath("/dashboard/invoices");
 }
