@@ -406,4 +406,48 @@ Debouncing is a programming practice that limits the rate at which a function ca
 
 ---
 
+## React Server Actions
+
+React Server Actions allow you to run asynchronous code directly on the server. They eliminate the need to create API endpoints to mutate your data. Instead, you write asynchronous functions that execute on the server and can be invoked from your Client or Server Components.
+
+They include features like encrypted closures, strict input checks, error message hashing, host restrictions, and more — all working together to significantly enhance your application security.
+
+### Using forms with Server Actions
+
+In React, you can use the action attribute in the `<form>` element to invoke actions.
+
+```typescript
+// Server Component
+export default function Page() {
+  // Action
+  async function create(formData: FormData) {
+    'use server';
+
+    // Logic to mutate data...
+  }
+
+  // Invoke the action using the "action" attribute
+  return <form action={create}>...</form>;
+}
+```
+
+> An advantage of invoking a Server Action within a Server Component is progressive enhancement - forms work even if JavaScript has not yet loaded on the client. For example, without slower internet connections.
+
+### Next.js with Server Actions
+
+Server Actions are also deeply integrated with Next.js [caching](https://nextjs.org/docs/app/guides/caching-without-cache-components). When a form is submitted through a Server Action, not only can you use the action to mutate data, but you can also revalidate the associated cache using APIs like `revalidatePath` and `revalidateTag`.
+
+### Using Server Actions in this project: Creating an invoice
+
+1. Create a form to capture the user's input.
+2. Create a Server Action and invoke it from the form.
+3. Inside your Server Action, extract the data from the formData object.
+4. Validate and prepare the data to be inserted into your database.
+5. Insert the data and handle any errors.
+6. Revalidate the cache and redirect the user back to invoices page.
+
+> Check `/dashboard/invoices/create/page.tsx`
+
+---
+
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
