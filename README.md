@@ -431,6 +431,8 @@ export default function Page() {
 }
 ```
 
+> `use server` marks [server-side functions](https://react.dev/reference/rsc/use-server) that can be called from client-side code.
+
 > An advantage of invoking a Server Action within a Server Component is progressive enhancement - forms work even if JavaScript has not yet loaded on the client. For example, without slower internet connections.
 
 ### Next.js with Server Actions
