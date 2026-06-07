@@ -17,8 +17,7 @@ const FormSchema = z.object({
 });
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
-
-// amountInCents = It's a good practice to store monetary values in cents in your database to eliminate JavaScript floating-point errors and ensure accuracy.
+const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
   const { customerId, amount, status } = CreateInvoice.parse({
@@ -28,6 +27,7 @@ export async function createInvoice(formData: FormData) {
   });
   // convert the amount into cents
   const amountInCents = amount * 100;
+  // amountInCents = It's a good practice to store monetary values in cents in your database to eliminate JavaScript floating-point errors and ensure accuracy.
 
   // create a new date with the format "YYYY-MM-DD"
   const date = new Date().toISOString().split("T")[0];
@@ -41,5 +41,24 @@ export async function createInvoice(formData: FormData) {
   // revalidate the path, clear the cache and trigger a new request to the server
   revalidatePath("/dashboard/invoices");
   // redirect the user back to the /dashboard/invoices page
+  redirect("/dashboard/invoices");
+}
+
+export async function updateInvoice(id: string, formData: FormData) {
+  const { customerId, amount, status } = UpdateInvoice.parse({
+    customerId: formData.get("customerId"),
+    amount: formData.get("amount"),
+    status: formData.get("status"),
+  });
+
+  const amountInCents = amount * 100;
+
+  await sql`
+    UPDATE invoices
+    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
+    WHERE id = ${id}
+  `;
+
+  revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
