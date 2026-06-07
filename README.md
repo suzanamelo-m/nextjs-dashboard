@@ -450,6 +450,16 @@ Server Actions are also deeply integrated with Next.js [caching](https://nextjs.
 
 > Check `/dashboard/invoices/create/page.tsx`
 
+**Good to know:** In HTML, you'd pass a URL to the `action` attribute in your form. This URL would be the destination where your form data should be submitted (usually an API endpoint).
+
+However, in React, the `action` attribute is considered a special prop - meaning React builds on top of it to allow actions to be invoked.
+
+Behind the scenes, Server Actions create a `POST` API endpoint. This is why you don't need to create API endpoints manually when using Server Actions.
+
+> Check `/app/ui/invoices/create-form.tsx`
+
+> Tip: If you're working with forms that have many fields, you may want to consider using the [`entries()`](https://developer.mozilla.org/en-US/docs/Web/API/FormData/entries) method with JavaScript's [`Object.fromEntries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries).
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
