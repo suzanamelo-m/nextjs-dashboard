@@ -541,6 +541,14 @@ By validating forms on the server, you can:
 
 > Check `/app/ui/invoices/create-form.tsx` and `/app/lib/actions.ts`
 
+## Authentication vs. Authorization
+
+**Authentication** is about making sure the user is who they say they are. You're proving your identity with something you have like a username and password.
+
+**Authorization** is the next step. Once a user's identity is confirmed, authorization decides what parts of the application they are allowed to use.
+
+So, authentication checks who you are, and authorization determines what you can do or access in the application.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
