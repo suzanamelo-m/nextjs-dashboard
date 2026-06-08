@@ -531,6 +531,16 @@ _/package.json_
 
 The simplest would be to rely on the form validation provided by the browser by adding the `required` attribute to the `<input>` and `<select>` elements in your forms.
 
+**Server-Side validation**
+
+By validating forms on the server, you can:
+
+- Ensure your data is in the expected format before sending it to your database.
+- Reduce the risk of malicious users bypassing client-side validation.
+- Have one source of truth for what is considered valid data.
+
+> Check `/app/ui/invoices/create-form.tsx` and `/app/lib/actions.ts`
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
