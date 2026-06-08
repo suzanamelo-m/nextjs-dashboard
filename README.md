@@ -549,6 +549,10 @@ By validating forms on the server, you can:
 
 So, authentication checks who you are, and authorization determines what you can do or access in the application.
 
+### NextAuth.js
+
+[NextAuth.js](https://authjs.dev/reference/nextjs) abstracts away much of the complexity involved in managing sessions, sign-in and sign-out, and other aspects of authentication. It simplifies the process, providing a unified solution for auth in Next.js applications.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
