@@ -472,6 +472,16 @@ You can use the `redirect` function from Next.js to redirect the user back to th
 
 Next.js allows you to create [Dynamic Route Segments](https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes) when you don't know the exact segment name and want to create routes based on data. This could be blog post titles, product pages, etc. You can create dynamic route segments by wrapping a folder's name in square brackets. For example, `[id]`, `[post]` or `[slug]`.
 
+## Handing errors
+
+The `error.tsx` file can be used to define a UI boundary for a route segment. It serves as a **catch-all** for unexpected errors and allows you to display a fallback UI to your users.
+
+While `error.tsx` is useful for catching uncaught exceptions, `notFound` function can be used when you try to fetch a resource that doesn't exist.
+
+`notFound` will take precedence over `error.tsx`, so you can reach out for it when you want to handle more specific errors!
+
+> Check `/dashboard/invoices/error.tsx` and `/dashboard/invoices/[id]/edit/not-found.tsx`
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
