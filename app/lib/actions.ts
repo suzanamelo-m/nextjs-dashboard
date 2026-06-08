@@ -33,10 +33,18 @@ export async function createInvoice(formData: FormData) {
   const date = new Date().toISOString().split("T")[0];
 
   // create an SQL query to insert the new invoice into the database
-  await sql`
-    INSERT INTO invoices (customer_id, amount, status, date)
-    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-  `;
+  try {
+    await sql`
+      INSERT INTO invoices (customer_id, amount, status, date)
+      VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+    `;
+  } catch (error) {
+    // We'll also log the error to the console for now
+    console.error(error);
+    return {
+      message: "Database Error: Failed to Create Invoice.",
+    };
+  }
 
   // revalidate the path, clear the cache and trigger a new request to the server
   revalidatePath("/dashboard/invoices");
@@ -53,17 +61,26 @@ export async function updateInvoice(id: string, formData: FormData) {
 
   const amountInCents = amount * 100;
 
-  await sql`
-    UPDATE invoices
-    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-    WHERE id = ${id}
-  `;
+  try {
+    await sql`
+        UPDATE invoices
+        SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
+        WHERE id = ${id}
+      `;
+  } catch (error) {
+    // We'll also log the error to the console for now
+    console.error(error);
+    return { message: "Database Error: Failed to Update Invoice." };
+  }
 
   revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
 
 export async function deleteInvoice(id: string) {
+  throw new Error("Failed to Delete Invoice");
+
+  // Unreachable code block
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath("/dashboard/invoices");
 }
