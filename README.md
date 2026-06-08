@@ -482,6 +482,49 @@ While `error.tsx` is useful for catching uncaught exceptions, `notFound` functio
 
 > Check `/dashboard/invoices/error.tsx` and `/dashboard/invoices/[id]/edit/not-found.tsx`
 
+## What is accessibility?
+
+Accessibility refers to designing and implementing web applications that everyone can use, including those with disabilities. It's a vast topic that covers many areas, such as keyboard navigation, semantic HTML, images, colors, videos, etc.
+
+### Using the ESLint accessibility plugin in Next.js
+
+Next.js's ESLint configuration includes the [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) plugin, which helps catch accessibility issues early. For example, this plugin warns if you have images without alt text, use the aria-\* and role attributes incorrectly, and more.
+
+```bash
+pnpm add -D eslint eslint-config-next
+```
+
+_eslint.config.mjs_
+
+```mjs
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
+
+export default eslintConfig;
+```
+
+_/package.json_
+
+```json
+"scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "eslint ."
+},
+```
+
+### Improving form accessibility
+
+- **Semantic HTML:** Using semantic elements (`<input>`, `<option>`, etc) instead of <div>. This allows assistive technologies (AT) to focus on the input elements and provide appropriate contextual information to the user, making the form easier to navigate and understand.
+- **Labelling:** Including `<label>` and the `htmlFor` attribute ensures that each form field has a descriptive text label. This improves AT support by providing context and also enhances usability by allowing users to click on the label to focus on the corresponding input field.
+- **Focus Outline:** The fields are properly styled to show an outline when they are in focus. This is critical for accessibility as it visually indicates the active element on the page, helping both keyboard and screen reader users to understand where they are on the form. You can verify this by pressing `tab`.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
