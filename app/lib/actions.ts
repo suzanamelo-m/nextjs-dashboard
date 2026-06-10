@@ -126,6 +126,7 @@ export async function deleteInvoice(id: string) {
   }
 }
 
+// import the signIn function from auth.ts
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
