@@ -1,9 +1,13 @@
 import SideNav from "@/app/ui/dashboard/sidenav";
 import { Metadata } from "next";
 
+// you can use the title.template field in the metadata object to define a template for your page titles
 export const metadata: Metadata = {
-  title: "Acme Dashboard",
-  description: "The official Next.js Course Dashboard, built with App Router.",
+  title: {
+    template: "%s | Acme Dashboard",
+    default: "Acme Dashboard",
+  },
+  description: "The official Next.js Learn Dashboard built with App Router.",
   metadataBase: new URL("https://next-learn-dashboard.vercel.sh"),
 };
 
