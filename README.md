@@ -553,6 +553,56 @@ So, authentication checks who you are, and authorization determines what you can
 
 [NextAuth.js](https://authjs.dev/reference/nextjs) abstracts away much of the complexity involved in managing sessions, sign-in and sign-out, and other aspects of authentication. It simplifies the process, providing a unified solution for auth in Next.js applications.
 
+### Protecting your routes with Next.js Proxy
+
+_/auth.config.ts_
+
+```typescript
+import type { NextAuthConfig } from "next-auth";
+
+export const authConfig = {
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+      if (isOnDashboard) {
+        if (isLoggedIn) return true;
+        return false; // Redirect unauthenticated users to login page
+      } else if (isLoggedIn) {
+        return Response.redirect(new URL("/dashboard", nextUrl));
+      }
+      return true;
+    },
+  },
+  providers: [], // Add providers with an empty array for now
+} satisfies NextAuthConfig;
+```
+
+The `authorized` callback is used to verify if the request is authorized to access a page with [Next.js Proxy](https://nextjs.org/docs/app/api-reference/file-conventions/proxy). It is called before a request is completed, and it receives an object with the `auth` and `request` properties. The `auth` property contains the user's session, and the `request` property contains the incoming request.
+
+The `providers` option is an array where you list different login options.
+
+_/proxy.ts_
+
+```typescript
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
+
+export default NextAuth(authConfig).auth;
+
+export const config = {
+  // https://nextjs.org/docs/app/api-reference/file-conventions/proxy#matcher
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};
+```
+
+Here you're initializing **NextAuth.js** with the `authConfig` object and exporting the `auth` property. You're also using the `matcher` option from Proxy to specify that it should run on specific paths.
+
+The advantage of employing Proxy for this task is that the protected routes will not even start rendering until the Proxy verifies the authentication, enhancing both the security and performance of your application.
+
 ---
 
 > This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application. For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
