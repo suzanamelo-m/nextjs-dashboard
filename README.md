@@ -583,7 +583,9 @@ export const authConfig = {
 
 The `authorized` callback is used to verify if the request is authorized to access a page with [Next.js Proxy](https://nextjs.org/docs/app/api-reference/file-conventions/proxy). It is called before a request is completed, and it receives an object with the `auth` and `request` properties. The `auth` property contains the user's session, and the `request` property contains the incoming request.
 
-The `providers` option is an array where you list different login options.
+The `providers` option is an array where you list different login options, such as Google or GitHub. For this course, we will focus on using the [Credentials](https://authjs.dev/getting-started/providers/credentials) provider only.
+
+> There are other alternative providers such as [OAuth](https://authjs.dev/getting-started/authentication/oauth) or [email](https://authjs.dev/getting-started/authentication/email).
 
 _/proxy.ts_
 
